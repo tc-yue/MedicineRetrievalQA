@@ -1,0 +1,49 @@
+---
+swagger: "2.0"
+info:
+  description: "QA like Waston"
+  version: "1.0.0"
+  title: "WastonQA API"
+basePath: "/openapi"
+schemes:
+- "http"
+produces:
+- "application/json"
+paths:
+  /api:
+    post:
+      tags:
+      - "QA"
+      summary: "QA"
+      description: "Answer Questions, XiaoTaiYi\n"
+      operationId: "api_post"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "question object"
+        required: true
+        schema:
+          $ref: "#/definitions/Question"
+      responses:
+        200:
+          description: "answer object"
+          schema:
+            $ref: "#/definitions/Answer"
+      x-swagger-router-controller: "swagger_server.controllers.qa_controller"
+definitions:
+  Question:
+    type: "object"
+    properties:
+      key:
+        type: "string"
+      info:
+        type: "string"
+      userid:
+        type: "string"
+  Answer:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+      text:
+        type: "string"
